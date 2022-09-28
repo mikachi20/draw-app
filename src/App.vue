@@ -1,16 +1,13 @@
 <template>
   <TestCanvas />
-  <Test />
 </template>
 
 <script>
-import Test from "./components/DrawTest.vue"
 import TestCanvas from "./components/testCanvas.vue"
 
 export default {
   name: "App",
   components: {
-    Test,
     TestCanvas,
   },
 }

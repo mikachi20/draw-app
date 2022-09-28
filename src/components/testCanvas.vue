@@ -1,49 +1,59 @@
 <template>
   <div class="textBlock">
-    <h1>木を描画してください</h1>
+    <h1>木を描画してください。</h1>
   </div>
-  <div class="changeColor">
-    <div id="cbox">現在の色：{{ selectColor }}</div>
-    <div
-      id="cbox"
-      style="border: 2px solid black; color: black"
-      v-on:click="changeColor('black')"
-    >
-      black
+  <div class="currentColor">現在の色：{{ selectColor }}</div>
+  <div class="content">
+    <div class="changeColor" style="float: left">
+      <h2>🖌</h2>
+      <div
+        id="cbox"
+        style="border: 2px solid black; color: black"
+        v-on:click="changeColor('black')"
+      >
+        black
+      </div>
+      <div
+        id="cbox"
+        style="border: 2px solid green; color: green"
+        v-on:click="changeColor('green')"
+      >
+        green
+      </div>
+      <div
+        id="cbox"
+        style="border: 2px solid red; color: red"
+        v-on:click="changeColor('red')"
+      >
+        red
+      </div>
+      <div
+        id="cbox"
+        style="border: 2px solid brown; color: brown"
+        v-on:click="changeColor('brown')"
+      >
+        brown
+      </div>
+      <div
+        id="cbox"
+        style="border: 2px solid blue; color: blue"
+        v-on:click="changeColor('blue')"
+      >
+        blue
+      </div>
     </div>
-    <div
-      id="cbox"
-      style="border: 2px solid green; color: green"
-      v-on:click="changeColor('green')"
-    >
-      green
+    <div id="canvas-area" style="float: right">
+      <canvas
+        id="myCanvas"
+        width="500"
+        height="500"
+        v-on:mousedown="dragStart"
+        v-on:mouseup="dragEnd"
+        v-on:mouseout="dragEnd"
+        v-on:mousemove="draw"
+      >
+      </canvas>
     </div>
-    <div
-      id="cbox"
-      style="border: 2px solid red; color: red"
-      v-on:click="changeColor('red')"
-    >
-      red
-    </div>
-    <div
-      id="cbox"
-      style="border: 2px solid brown; color: brown"
-      v-on:click="changeColor('brown')"
-    >
-      brown
-    </div>
-  </div>
-  <div id="canvas-area">
-    <canvas
-      id="myCanvas"
-      width="500"
-      height="500"
-      v-on:mousedown="dragStart"
-      v-on:mouseup="dragEnd"
-      v-on:mouseout="dragEnd"
-      v-on:mousemove="draw"
-    >
-    </canvas>
   </div>
 </template>
 
@@ -103,9 +113,20 @@ export default {
 .changeColor {
   justify-content: center;
   display: flex;
+  flex-flow: column;
+  background-color: rgb(240, 240, 245);
+  height: 498px;
 }
 #cbox {
   margin: 20px;
   padding: 5px;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (max-width: 480px) {
 }
 </style>
