@@ -2,7 +2,10 @@
   <div class="textBlock">
     <h1>木を描画してください。</h1>
   </div>
-  <div class="currentColor">現在の色：{{ selectColor }}</div>
+  <div class="infoBlock">
+    <div id="currentColor">現在の色：{{ selectColor }}</div>
+    <div id="displayTime">残り時間：{{ timeM }}分{{ timeS }}秒</div>
+  </div>
   <div class="content">
     <div class="changeColor" style="float: left">
       <h2>🖌</h2>
@@ -65,6 +68,11 @@ export default {
       context: null,
       isDrag: false,
       selectColor: "black",
+      // timeStart: 0,
+      timeCount: 0,
+      timeM: 5,
+      timeS: 0,
+      isTrue: true,
     }
   },
   mounted() {
@@ -76,6 +84,26 @@ export default {
     this.context.strokeStyle = "#000000"
   },
   methods: {
+    setTime() {
+      // console.log("kaisi")
+      // let now = new Date()
+      // let datet = parseInt((now.getTime() - this.timeStart.getTime()) / 1000)
+      // let min = parseInt((datet / 60) % 60)
+      // let sec = datet % 60
+      // this.timeM = 4 - min
+      // if (sec >= 10) {
+      //   this.timeS = 59 - sec
+      //   this.timeS = "0" + this.timeS
+      // } else {
+      //   this.timeS = 59 - sec
+      // }
+
+      this.timeCount++
+      this.timeM = 4 - Math.floor(this.timeCount / 60)
+      this.timeS = 60 - (this.timeCount % 60)
+      console.log(this.timeCount, this.timeM, this.timeS)
+      setTimeout(this.setTime, 1000)
+    },
     draw(e) {
       let x = e.offsetX
       let y = e.offsetY
@@ -92,6 +120,12 @@ export default {
       this.context.lineTo(x, y)
       this.context.stroke()
       this.isDrag = true
+      // this.timeStart = new Date()
+      if (this.isTrue) {
+        console.log("qqqqqqqqqqqqqqqqqqqqqqqq")
+        this.setTime()
+        this.isTrue = false
+      }
     },
     dragEnd() {
       this.context.closePath()
@@ -126,7 +160,5 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-@media screen and (max-width: 480px) {
 }
 </style>
