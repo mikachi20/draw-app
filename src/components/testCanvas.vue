@@ -58,6 +58,7 @@
       </canvas>
     </div>
   </div>
+  <button v-on:click="download">画像を提出する</button>
 </template>
 
 <script>
@@ -135,6 +136,15 @@ export default {
       this.context.strokeStyle = color
       this.selectColor = color
       alert(`線の色を${color}に変えました`)
+    },
+    download() {
+      let isOk = confirm(
+        "現在の描画内容で完了します。OKボタンを押すと画面が遷移して次に移ります。"
+      )
+      if (isOk) {
+        let base64 = this.canvas.toDataURL("image/png")
+        console.log(base64)
+      }
     },
   },
 }
