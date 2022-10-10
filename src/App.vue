@@ -1,15 +1,16 @@
 <template>
-  <TestCanvas />
+  <router-view />
+  <router-link to="/"></router-link>
 </template>
 
 <script>
-import TestCanvas from "./components/testCanvas.vue"
+// import TestCanvas from "./components/testCanvas.vue"
 
 export default {
   name: "App",
-  components: {
-    TestCanvas,
-  },
+  // components: {
+  //   TestCanvas,
+  // },
 }
 </script>
 

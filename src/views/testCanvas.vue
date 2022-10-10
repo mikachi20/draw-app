@@ -1,6 +1,6 @@
 <template>
   <div class="textBlock">
-    <h1>5分以内で実のなる木を描画してください。</h1>
+    <h1>実のなる木を描画してください。(5分以内)</h1>
   </div>
   <div class="infoBlock">
     <div id="currentColor">現在の色：{{ selectColor }}</div>
@@ -44,6 +44,13 @@
       >
         blue
       </div>
+      <div
+        id="cbox"
+        style="border: 2px solid white; color: black"
+        v-on:click="changeColor('white')"
+      >
+        消しゴム
+      </div>
     </div>
     <div id="canvas-area" style="float: right">
       <canvas
@@ -72,7 +79,6 @@ export default {
       context: null,
       isDrag: false,
       selectColor: "black",
-      // timeStart: 0,
       timeCount: 0,
       timeM: 5,
       timeS: 0,
@@ -86,26 +92,15 @@ export default {
     this.context.lineJoin = "round"
     this.context.lineWidth = 5
     this.context.strokeStyle = "#000000"
+    this.context.beginPath()
+    this.context.fillStyle = "rgb(255, 255, 255)"
+    this.context.fillRect(0, 0, this.canvas.width, this.canvas.height)
   },
   methods: {
     setTime() {
-      // console.log("kaisi")
-      // let now = new Date()
-      // let datet = parseInt((now.getTime() - this.timeStart.getTime()) / 1000)
-      // let min = parseInt((datet / 60) % 60)
-      // let sec = datet % 60
-      // this.timeM = 4 - min
-      // if (sec >= 10) {
-      //   this.timeS = 59 - sec
-      //   this.timeS = "0" + this.timeS
-      // } else {
-      //   this.timeS = 59 - sec
-      // }
-
       this.timeCount++
       this.timeM = 4 - Math.floor(this.timeCount / 60)
       this.timeS = 60 - (this.timeCount % 60)
-      console.log(this.timeCount, this.timeM, this.timeS)
       setTimeout(this.setTime, 1000)
     },
     draw(e) {
@@ -126,7 +121,7 @@ export default {
       this.isDrag = true
       // this.timeStart = new Date()
       if (this.isTrue) {
-        console.log("qqqqqqqqqqqqqqqqqqqqqqqq")
+        // console.log("qqqqqqqqqqqqqqqqqqqqqqqq")
         this.setTime()
         this.isTrue = false
       }
@@ -146,10 +141,21 @@ export default {
       )
       if (isOk) {
         let base64 = this.canvas.toDataURL("image/png")
-        console.log(base64)
-        await addDoc(collection(db, "base64"), {
-          url: base64,
-        })
+        let drawId = ""
+        // console.log(base64)
+        try {
+          await addDoc(collection(db, "test"), {
+            url: base64,
+          }).then((docRef) => {
+            // console.log(docRef.id)
+            drawId = docRef.id
+          })
+          this.$router.push({ path: `/about/${drawId}` })
+        } catch {
+          alert(
+            "不明なエラーを検出しました。お手数ですがもう一度やり直してください"
+          )
+        }
       }
     },
   },
