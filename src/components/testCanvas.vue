@@ -1,6 +1,6 @@
 <template>
   <div class="textBlock">
-    <h1>木を描画してください。</h1>
+    <h1>5分以内で実のなる木を描画してください。</h1>
   </div>
   <div class="infoBlock">
     <div id="currentColor">現在の色：{{ selectColor }}</div>
@@ -62,6 +62,9 @@
 </template>
 
 <script>
+import { collection, addDoc } from "firebase/firestore"
+import { db } from "../firebase"
+
 export default {
   data() {
     return {
@@ -137,13 +140,16 @@ export default {
       this.selectColor = color
       alert(`線の色を${color}に変えました`)
     },
-    download() {
+    async download() {
       let isOk = confirm(
         "現在の描画内容で完了します。OKボタンを押すと画面が遷移して次に移ります。"
       )
       if (isOk) {
         let base64 = this.canvas.toDataURL("image/png")
         console.log(base64)
+        await addDoc(collection(db, "base64"), {
+          url: base64,
+        })
       }
     },
   },
