@@ -133,7 +133,11 @@ export default {
     changeColor(color) {
       this.context.strokeStyle = color
       this.selectColor = color
-      alert(`線の色を${color}に変えました`)
+      if (color == "white") {
+        alert("消しゴムを選択しました")
+      } else {
+        alert(`線の色を${color}に変えました`)
+      }
     },
     async download() {
       let isOk = confirm(
@@ -144,7 +148,7 @@ export default {
         let drawId = ""
         // console.log(base64)
         try {
-          await addDoc(collection(db, "test"), {
+          await addDoc(collection(db, "ownerTest"), {
             url: base64,
           }).then((docRef) => {
             // console.log(docRef.id)
