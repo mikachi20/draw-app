@@ -384,14 +384,12 @@ export default {
   },
   methods: {
     async submit() {
-      console.log(this.scores)
       for (let i = 1; i < 11; i++) {
         if (this.scores[i] == null) {
           alert(`質問${i}が選択されていません。`)
           return
         }
       }
-      console.log("for文後")
       this.index1 = Number(this.scores[1]) + (8 - Number(this.scores[6]))
       this.index2 = Number(this.scores[7]) + (8 - Number(this.scores[2]))
       this.index3 = Number(this.scores[3]) + (8 - Number(this.scores[8]))
