@@ -364,7 +364,7 @@
     </div>
   </div>
   <div class="block3">
-    <button v-on:click="submit">提出</button>
+    <button class="button" v-on:click="submit">提出</button>
   </div>
 </template>
 
@@ -433,5 +433,19 @@ export default {
 #q1check {
   margin: 20px;
   padding: 10px;
+}
+.button {
+  background: rgb(168, 241, 195);
+  border-radius: 50px;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 260px;
+  padding: 10px 25px;
+  color: #080101;
+  transition: 0.3s ease-in-out;
+  font-weight: 500;
 }
 </style>

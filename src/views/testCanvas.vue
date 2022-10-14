@@ -65,7 +65,7 @@
       </canvas>
     </div>
   </div>
-  <button v-on:click="download">画像を提出する</button>
+  <button class="button" v-on:click="download">画像を提出する</button>
 </template>
 
 <script>
@@ -186,5 +186,20 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.button {
+  background: rgb(168, 241, 195);
+  border-radius: 50px;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 260px;
+  padding: 10px 25px;
+  color: #080101;
+  transition: 0.3s ease-in-out;
+  font-weight: 500;
 }
 </style>
