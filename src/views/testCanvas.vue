@@ -1,6 +1,6 @@
 <template>
   <div class="textBlock">
-    <h1>実のなる木を描画してください。(5分以内)</h1>
+    <h1>実のなる木を描画してください。(1分以上5分以内でお願いします)</h1>
   </div>
   <div class="infoBlock">
     <div id="currentColor">現在の色：{{ selectColor }}</div>
