@@ -369,7 +369,7 @@
 </template>
 
 <script>
-import { doc, setDoc } from "firebase/firestore"
+import { doc, setDoc, serverTimestamp } from "firebase/firestore"
 import { db } from "../firebase"
 export default {
   data() {
@@ -415,6 +415,7 @@ export default {
             diligence: this.index3,
             neuroticism: this.index4,
             openness: this.index5,
+            createdAt: serverTimestamp(),
           },
           { merge: true }
         )
