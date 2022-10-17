@@ -16,7 +16,7 @@ const routes = [
     component: Canvas,
   },
   {
-    path: "/end",
+    path: "/end/:id?",
     name: "End",
     component: End,
   },

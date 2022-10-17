@@ -432,7 +432,7 @@ export default {
           },
           { merge: true }
         )
-        this.$router.push("/end")
+        this.$router.push({ path: `/end/${docId}` })
       } catch {
         alert(
           "不明なエラーを検出しました。お手数ですがもう一度やり直してください。"
