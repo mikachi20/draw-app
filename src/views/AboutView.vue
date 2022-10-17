@@ -375,6 +375,7 @@
       </div>
     </div>
   </div>
+  <br />
   <div class="block3">
     <button class="button" v-on:click="submit">提出</button>
   </div>

@@ -65,6 +65,7 @@
       </canvas>
     </div>
   </div>
+  <br />
   <button class="button" v-on:click="download">画像を提出する</button>
 </template>
 
