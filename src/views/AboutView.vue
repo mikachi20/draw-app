@@ -6,13 +6,25 @@
     <h2>
       文章全体を総合的に見て、自分にどれだけ当てはまるかを評価してください。項目は全部で10個です。
     </h2>
-    <div>1,全く違うと思う</div>
-    <div>2,おおよそ違うと思う</div>
-    <div>3,少し違うと思う</div>
-    <div>4,どちらでもない</div>
-    <div>5,少しそう思う</div>
-    <div>6,まあまあそう思う</div>
-    <div>7,強くそう思う</div>
+    <div class="oneseven">
+      <ol>
+        <li>全く違うと思う</li>
+        <li>おおよそ違うと思う</li>
+        <li>少し違うと思う</li>
+        <li>どちらでもない</li>
+        <li>少しそう思う</li>
+        <li>まあまあそう思う</li>
+        <li>強くそう思う</li>
+      </ol>
+    </div>
+    <!-- <div style="font-weight: 900">1,全く違うと思う</div>
+    <div style="font-weight: 900">2,おおよそ違うと思う</div>
+    <div style="font-weight: 900">2,おおよそ違うと思う</div>
+    <div style="font-weight: 900">3,少し違うと思う</div>
+    <div style="font-weight: 900">4,どちらでもない</div>
+    <div style="font-weight: 900">5,少しそう思う</div>
+    <div style="font-weight: 900">6,まあまあそう思う</div>
+    <div style="font-weight: 900">7,強くそう思う</div> -->
   </div>
   <br />
   <br />
@@ -431,6 +443,13 @@ export default {
 </script>
 
 <style>
+.oneseven {
+  font-weight: 900;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 220px);
+  justify-content: center;
+  grid-gap: 1rem;
+}
 #q1check {
   margin: 20px;
   padding: 10px;
