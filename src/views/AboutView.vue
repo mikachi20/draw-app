@@ -411,7 +411,7 @@ export default {
       let docId = this.$route.params.id.toString()
       try {
         await setDoc(
-          doc(db, "test2", docId),
+          doc(db, "productionData", docId),
           {
             score1: Number(this.scores[1]),
             score2: Number(this.scores[2]),

@@ -164,7 +164,7 @@ export default {
         let drawId = ""
         // console.log(base64)
         try {
-          await addDoc(collection(db, "test2"), {
+          await addDoc(collection(db, "productionData"), {
             url: base64,
           }).then((docRef) => {
             // console.log(docRef.id)
