@@ -1,6 +1,6 @@
 <template>
   <div class="textBlock">
-    <h1>実のなる木を描画してください。(1分以上5分以内でお願いします)</h1>
+    <h1>実のなる木を描画してください。(5分以内でお願いします)</h1>
   </div>
   <div class="infoBlock">
     <div id="currentColor">現在の色：{{ selectColor }}</div>
@@ -65,7 +65,7 @@
       </canvas>
     </div>
   </div>
-  <br />
+  <h3 id="alertArea">{{ textAlert }}</h3>
   <button class="button" v-on:click="download">画像を提出する</button>
 </template>
 
@@ -84,6 +84,7 @@ export default {
       timeM: 5,
       timeS: 0,
       isTrue: true,
+      textAlert: "",
     }
   },
   mounted() {
@@ -120,9 +121,7 @@ export default {
       this.context.lineTo(x, y)
       this.context.stroke()
       this.isDrag = true
-      // this.timeStart = new Date()
       if (this.isTrue) {
-        // console.log("qqqqqqqqqqqqqqqqqqqqqqqq")
         this.setTime()
         this.isTrue = false
       }
@@ -141,6 +140,22 @@ export default {
       }
     },
     async download() {
+      this.textAlert = ""
+      let imageDatas = this.context.getImageData(
+        0,
+        0,
+        this.canvas.width,
+        this.canvas.height
+      ).data
+      let countImageDatas = imageDatas.filter((data) => data === 255)
+      if (countImageDatas.length > 940000) {
+        let zanryou = (1000000 - countImageDatas.length) / 60000
+        this.textAlert =
+          "描画量が足りません。現在の描画量の" +
+          (100 + (100 - zanryou.toFixed(2) * 100)) +
+          "%ほどが必要です"
+        return
+      }
       let isOk = confirm(
         "現在の描画内容で完了します。OKボタンを押すと画面が遷移して次に移ります。"
       )
@@ -183,6 +198,9 @@ export default {
   padding: 5px;
 }
 
+#alertArea {
+  color: red;
+}
 .content {
   display: flex;
   justify-content: center;
