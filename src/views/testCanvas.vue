@@ -156,6 +156,16 @@ export default {
           "%ほどが必要です"
         return
       }
+      if (this.timeM >= 4) {
+        alert("1分以上経過しないと提出できません。")
+        return
+      }
+      if (this.timeM < 0) {
+        alert(
+          "5分以上経過してしまいました。お手数ですが画面を更新してやり直してください。"
+        )
+        return
+      }
       let isOk = confirm(
         "現在の描画内容で完了します。OKボタンを押すと画面が遷移して次に移ります。"
       )
